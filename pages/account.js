@@ -15,14 +15,20 @@ class Account extends React.Component {
   constructor (props) {
     super(props)
 
+    // this causes the bug
     this.verifyUser()
   }
+
+  // componentDidMount () {
+  //   this.verifyUser()
+  // }
 
   static getInitialProps ({ query }) {
     return { query }
   }
 
   verifyUser = async () => {
+    console.log('calling')
     try {
       await this.props.helpers.handleVerify({
         email: this.props.query.email,
@@ -77,7 +83,7 @@ class Account extends React.Component {
                 </div>
                 <div className='mb2 mt3'>
                   <div className='white bg-tf-teal tf-lato b tc pa2 w-50 m-auto br-pill pointer'
-                    onClick={this.cancelReccuringDonation}>
+                    onClick={this.verifyUser}>
                     <label className='ttu'>Cancel recurring donation</label>
                   </div>
                 </div>

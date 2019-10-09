@@ -19,6 +19,7 @@ export const register = async (bodyObject) => {
 
 // Verify an account from magic link
 export const verify = async (bodyObject) => {
+  console.log('actually calling verify')
   return fetch(`${ENDPOINT}/account/verify`, constructPostBody(bodyObject))
 }
 

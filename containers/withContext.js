@@ -76,18 +76,21 @@ export default (Page, pageProps) => class Context extends Component {
   }
 
   async handleVerify ({ email, auth }) {
+    console.log('calling handle verify')
     const resStream = await Api.verify({ email, auth })
     const res = await resStream.json()
     if (!res.ok) {
       this.setState({ loggedIn: false })
       throw new Error('authentication failed')
     }
+    console.log(res)
     // mark them as logged in
     this.setState({ loggedIn: true, email, auth })
     return this.fetchUserStats()
   }
 
   async fetchUserStats () {
+    console.log('calling fetch user stats')
     const resStream = await Api.fetchUserStats({ email: this.state.email, auth: this.state.auth })
     const res = await resStream.json()
     if (!res.ok) {
